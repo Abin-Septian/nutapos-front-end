@@ -10,9 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,18 +41,20 @@
                     <div class="col-md-2 col-sm-12">
                         <label for="tanggal" class="col-form-label">Tanggal</label>
                     </div>
-                        <div class="input-group date col-md-3 col-sm-12" id="datepicker" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datepicker"  placeholder="Select Date"/>
-                            <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
+                    <div class="input-group date col-md-3 col-sm-12" id="datepicker" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datepicker"
+                            placeholder="Select Date" />
+                        <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
+                    </div>
 
                     <div class="col-md-1 col-sm-12">
                         <label for="jam" class="col-form-label">Jam</label>
                     </div>
                     <div class="input-group date col-md-2 col-sm-12" id="timepicker" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" placeholder="Select time"/>
+                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker"
+                            placeholder="Select time" />
                         <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-clock"></i></div>
                         </div>
@@ -142,9 +147,9 @@
     </div>
 
     <script type="text/javascript">
-            $('#datepicker').datetimepicker({
-                format: 'L'
-            });
+        $('#datepicker').datetimepicker({
+            format: 'L'
+        });
 
         $('#timepicker').datetimepicker({
             format: 'LT'
