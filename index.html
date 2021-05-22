@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+
+
+        <div class="row p-4">
+            <form action="">
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-md-2 col-sm-12">
+                        <label for="namaPelanggan" class="col-form-label">Nama Pelanggan</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" id="namaPelanggan" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-md-2 col-sm-12">
+                        <label for="tanggal" class="col-form-label">Tanggal</label>
+                    </div>
+                        <div class="input-group date col-md-3 col-sm-12" id="datepicker" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datepicker"  placeholder="Select Date"/>
+                            <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+
+                    <div class="col-md-1 col-sm-12">
+                        <label for="jam" class="col-form-label">Jam</label>
+                    </div>
+                    <div class="input-group date col-md-2 col-sm-12" id="timepicker" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" placeholder="Select time"/>
+                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center mb-3 d-flex">
+                    <div class="col-md-2 align-self-start col-sm-12">
+                        <label for="namaPelanggan" class="col-form-label">Item Yang Dijual</label>
+                    </div>
+                    <div class="col-md-10 col-sm-12">
+                        <div class="table-responsive-sm">
+                            <table class="table table-bordered">
+                                <thead class="w-100">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Harga Satuan</th>
+                                        <th>Sub Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemOrder">
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="itemName[]" id="" class="form-control">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="quantity[]" id="" class="form-control"
+                                                onkeypress="return isNumberKey(event)" value="0"
+                                                onblur="countSubTotal(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="price[]" id="" class="form-control"
+                                                onkeypress="return isNumberKey(event)" value="0"
+                                                onblur="countSubTotal(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="subTotal[]" id="" class="form-control" disabled>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-light" onclick="removeItem(this)">
+                                                <span>
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="#" onclick="addItem()">+ Tambah Item Lain</a>
+
+                            <div class="d-flex justify-content-end my-3">
+                                <div class="col-auto">
+                                    <label for="totalPrice" class="col-form-label">Total</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="totalPrice" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mb-3">
+                                <div class="col-auto">
+                                    <label for="bayarTunai" class="col-form-label">Bayar Tunai</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="bayarTunai" class="form-control"
+                                        onkeypress="return isNumberKey(event)" onblur="receh()" value="0">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mb-3">
+                                <div class="col-auto">
+                                    <label for="kembalian" class="col-form-label">Kembali</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="kembalian" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="" class="btn btn-secondary mr-3">Cancel</a>
+                                <a href="#" class="btn btn-primary mr-3" onclick="cetak()">Simpan</a>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <small class="form-text text-muted">*to clear form please click cancel</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+            $('#datepicker').datetimepicker({
+                format: 'L'
+            });
+
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        });
+
+        function addItem() {
+            let html = '';
+
+            html += `
+                    <tr>
+                        <td>
+                            <input type="text" name="itemName[]" id="" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" name="quantity[]" id="" class="form-control"
+                                onkeypress="return isNumberKey(event)" value="0" onblur="countSubTotal(this)">
+                        </td>
+                        <td>
+                            <input type="text" name="price[]" id="" class="form-control"
+                                onkeypress="return isNumberKey(event)" value="0" onblur="countSubTotal(this)">
+                        </td>
+                        <td>
+                            <input type="text" name="subTotal[]" id="" class="form-control" disabled>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-light" onclick="removeItem(this)">
+                                <span>
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                `;
+
+            $(itemOrder).append(html);
+        }
+
+        function removeItem(id) {
+            id.closest('tr').remove();
+
+            getTotal();
+        }
+
+        function isNumberKey(evt) {
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+
+        function isNumericKey(evt) {
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                return true;
+            return false;
+        }
+
+        function countSubTotal(obj) {
+            let qtyValue = $(obj).parents("tr").find("td:eq(1)").find("input").val();
+            let priceValue = $(obj).parents("tr").find("td:eq(2)").find("input").val();
+
+            let total = qtyValue * priceValue;
+
+            $(obj).parents("tr").find("td:eq(3)").find("input").val(total);
+
+            getTotal();
+        }
+
+        function getTotal() {
+            let table = $("tbody#itemOrder").find("tr");
+            let total = 0;
+
+            $.each($(table), function (key, value) {
+                let subTotal = $(this).find("td:eq(3)").find("input").val();
+
+                total += + subTotal;
+
+            });
+
+            $("#totalPrice").val(total);
+
+            receh();
+        }
+
+        function receh() {
+            let total = $("#totalPrice").val();
+            let payment = $("#bayarTunai").val();
+
+            let sum = eval(payment) - eval(total);
+
+            let kembalian = $("#kembalian").val(sum);
+        }
+
+        function cetak() {
+            let namaPelanggan = $("#namaPelanggan").val();
+            let tanggal = $("#tanggal").val();
+            let jam = $("#jam").val();
+            let total = $("#totalPrice").val();
+            let bayarTunai = $("#bayarTunai").val();
+            let kembalian = $("#kembalian").val();
+            let detilPenjualan = [];
+            let table = $("tbody#itemOrder").find("tr");
+
+            $.each($(table), function (key, value) {
+                let item = $(this).find("td:eq(0)").find('input').val();
+                let qty = $(this).find("td:eq(1)").find('input').val();
+                let price = $(this).find("td:eq(2)").find('input').val();
+                let subtotal = $(this).find("td:eq(3)").find('input').val();
+
+                let detail = {
+                    "Item": item,
+                    "Qty": qty,
+                    "HargaSatuan": price,
+                    "SubTotal": subtotal
+                }
+
+                detilPenjualan.push(detail);
+            });
+
+            let cetak = {
+                "NamaPelanggan": namaPelanggan,
+
+                "Tanggal": tanggal,
+
+                "Jam": jam,
+
+                "Total": total,
+
+                "BayarTunai": bayarTunai,
+
+                "Kembali": kembalian,
+
+                "DetilPenjualan": detilPenjualan
+
+            }
+
+            alert(JSON.stringify(cetak));
+        }
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
